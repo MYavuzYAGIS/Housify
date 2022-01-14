@@ -3,8 +3,8 @@ import express from "express";
 const app = express();
 const port = process.env.PORT || 9000;
 
-const one:number=1;
-const two:number=2;
+const one=1;
+const two=2;
 
 
 
