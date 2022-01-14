@@ -10,8 +10,9 @@ interface Listing{
     rating: number;
 
 }
+// export const listings:Array<Listing> same thing as below.
 
-export const listings:Listing[] = [
+ export const listings:Listing[] = [
     {
       id: "001",
       title:
