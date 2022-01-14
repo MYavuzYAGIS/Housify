@@ -1,0 +1,7 @@
+{
+  "name": "housify-server",
+  "version": "0.1.0",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}
