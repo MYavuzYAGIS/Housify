@@ -7,7 +7,7 @@ const query = new GraphQLObjectType({
     fields: {
         hello:{
             type: GraphQLString,
-            resolve: () => 'Hello world'
+            resolve: () => 'Hello world from the Query'
         }
     }
 
@@ -21,7 +21,7 @@ const mutation = new GraphQLObjectType({
     fields: {
         hello:{
             type: GraphQLString,
-            resolve: () => 'Hello world'
+            resolve: () => 'Hello world from the muatation'
         }
         
     }
