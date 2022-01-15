@@ -1,7 +1,7 @@
 //imports
 import {ApolloServer} from 'apollo-server-express';
 import express from "express";
-import {schema} from "./graphql";
+import {typeDefs, resolvers} from "./graphql";
 
 
 //constants
@@ -9,7 +9,7 @@ const app = express();
 const port = process.env.PORT || 9000;
 //topware-middlewares
 
-const server = new ApolloServer({schema});
+const server = new ApolloServer({typeDefs,resolvers});
 server.start().then(()=>{
   server.applyMiddleware({app,path:'/api'});
   app.listen(port,()=>{
