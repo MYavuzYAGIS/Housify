@@ -19,8 +19,8 @@ server.start().then(()=>{
   });
 });
  // sanity Chechk 
-  const listings = await db.listings.find({}).toArray();
-  console.log(listings);
+  // const listings = await db.listings.find({}).toArray();
+  // console.log(listings);
 };
 
 
