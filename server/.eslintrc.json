@@ -14,6 +14,7 @@
         "@typescript-eslint/no-unused-vars": "error",
         "@typescript-eslint/explicit-function-return-type": "off",
         "indent":"off",
-        "@typescript-eslint/indent":"off"
+        "@typescript-eslint/indent":"off",
+        "@typescript-eslint/no-var-requires": "off"
     }
 }
