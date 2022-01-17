@@ -30,6 +30,11 @@ export const resolvers:IResolvers= {
          hence, any field in the listing query is resolved to listing object of the Listing type. 
          from which you can reach the properties of the object using dot notation.
         */ 
+        id: (listing:Listing):string => listing._id.toString(),
+        // only the id is required to be returned becasuse it cannot be fetched from the database automatically
+        // because it's type is ObjectId with precursor of _.
+        // rest, what is down below are trivial and can be resolved by the resolvers automatically.
+
         title:(listing:Listing)=> listing.title,
         image:(listing:Listing)=> listing.image,
         address:(listing:Listing)=> listing.address,
