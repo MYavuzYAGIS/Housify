@@ -1,11 +1,9 @@
 import { ObjectId } from 'mongodb';
 import { IResolvers } from "@graphql-tools/utils";
-import { Database, Listing } from '../lib/types';
+import { Database, Listing } from '../../../lib/types';
 
 
-
-
-// const resolvers:IResolvers 
+// Resolvers for Listings.
 export const resolvers:IResolvers= {
     Query: {
     // I dont need to pass the root and args, {db} is the context argument, desctructured. {db:Database} is the typescript type which I imported from lib/types.ts
