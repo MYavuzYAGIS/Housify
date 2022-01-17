@@ -24,6 +24,12 @@ export const resolvers:IResolvers= {
         }
     },
     Listing:{
+        /*
+        define the resolvers for the Listing object just like did Query & Mutationfields. 
+        Listing type was defined in lib/typedefs and the query is expecting to resolve it.
+         hence, any field in the listing query is resolved to listing object of the Listing type. 
+         from which you can reach the properties of the object using dot notation.
+        */ 
         title:(listing:Listing)=> listing.title,
         image:(listing:Listing)=> listing.image,
         address:(listing:Listing)=> listing.address,
