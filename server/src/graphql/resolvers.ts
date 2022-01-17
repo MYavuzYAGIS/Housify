@@ -1,5 +1,4 @@
 import { ObjectId } from 'mongodb';
-import {listings} from '../listings';
 import { IResolvers } from "@graphql-tools/utils";
 import { Database } from '../lib/types';
 
@@ -19,7 +18,7 @@ export const resolvers:IResolvers= {
             const deleteRes =await db.listings.findOneAndDelete({_id: new ObjectId(id)});
         
         if(! deleteRes.value){
-            throw new Error('delete failed');
+            throw new Error('delete failed');1
         }
         return deleteRes.value;
         }
