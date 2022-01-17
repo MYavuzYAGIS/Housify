@@ -13,6 +13,9 @@ import { connectDatabase } from './database';
 const mount = async (app:Application) => {
   const db = await connectDatabase();
   const server = new ApolloServer({typeDefs,resolvers, context:() => ({db})});
+  // Here I put my database connection in the CONTEXT of the server. So I can reach it from anywhere in the server.
+  // Dont forget that the context is the third positional argument.
+  // I will call the context in the resolvers
 server.start().then(()=>{
   server.applyMiddleware({app,path:'/api'});
   app.listen(process.env.PORT,()=>{console.log(`Server is running on http://localhost:${process.env.PORT}`);
