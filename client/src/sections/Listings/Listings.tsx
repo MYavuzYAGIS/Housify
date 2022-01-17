@@ -1,5 +1,6 @@
 import React from 'react';
 import {server} from '../../lib/api'
+import { ListingsData } from './types';
 
 
 
@@ -36,15 +37,15 @@ export const Listings = ({title,owner}:Props) => {
 
     const fetchListings = async() => {
         // reponse was volumous, {data} is the only thing we need so we desctructured the response and took only data part.
-        const {data } =await server.fetch({query: LISTINGS});
-        console.log(data);
+        const {data } =await server.fetch<ListingsData>({query: LISTINGS});
+        // defined type through interface, so data.listings is ok but data.asdasda is given error since there is no asdsad in the interface.
+        console.log(data.listings);
     };
 
     return( 
     <div>
         <h2>{title} Listings Owned by {owner}</h2>
         <button onClick={fetchListings}>Console Log Listings from MongoDB</button>
-
     </div>
     )
 };
