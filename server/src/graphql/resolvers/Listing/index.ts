@@ -4,7 +4,7 @@ import { Database, Listing } from '../../../lib/types';
 
 
 // Resolvers for Listings.
-export const resolvers:IResolvers= {
+export const listingResolvers:IResolvers= {
     Query: {
     // I dont need to pass the root and args, {db} is the context argument, desctructured. {db:Database} is the typescript type which I imported from lib/types.ts
         listings: async (_root: undefined, _args:Record<string, never>, {db}:{db:Database}): Promise<Listing[]> => {
