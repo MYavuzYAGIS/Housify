@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongodb';
 import { IResolvers } from "@graphql-tools/utils";
-import { Database } from '../lib/types';
+import { Database, Listing } from '../lib/types';
 
 
 
@@ -22,6 +22,15 @@ export const resolvers:IResolvers= {
         }
         return deleteRes.value;
         }
+    },
+    Listing:{
+        title:(listing:Listing)=> listing.title,
+        image:(listing:Listing)=> listing.image,
+        address:(listing:Listing)=> listing.address,
+        price:(listing:Listing)=> listing.price,
+        numOfGuests:(listing:Listing)=> listing.numOfGuests,
+        numOfBeds:(listing:Listing)=> listing.numOfBeds,
+        numOfBaths:(listing:Listing)=> listing.numOfBaths,
+        rating:(listing:Listing)=> listing.rating
     }
-            
 } 
