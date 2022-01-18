@@ -1,6 +1,6 @@
 import React from 'react';
 import {server} from '../../lib/api'
-import { ListingsData } from './types';
+import { DeleteListingData, DeleteListingVariables,ListingsData } from './types';
 
 
 
@@ -25,6 +25,14 @@ const LISTINGS = `
 
 `;
 
+const DELETE_LISTING = `
+    mutation DeleteListing($id: ID!) {
+        deleteListing(id: $id) {
+            id
+        }
+    }
+`;
+
 interface Props{
     title: string;
     owner: string;
@@ -42,10 +50,25 @@ export const Listings = ({title,owner}:Props) => {
         console.log(data.listings);
     };
 
+
+    const deleteListings = async() => {
+        const {data} = await server.fetch<DeleteListingData,DeleteListingVariables>({
+            query: DELETE_LISTING,
+            variables:{id: '61e5751bb872def982770012'} });
+            console.log(data);
+    };
+           
+
+ 
+
+
     return( 
     <div>
         <h2>{title} Listings Owned by {owner}</h2>
         <button onClick={fetchListings}>Console Log Listings from MongoDB</button>
+        <button onClick={deleteListings}>Mutate listings from MongoDB</button>
+
     </div>
     )
 };
+
