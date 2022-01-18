@@ -24,7 +24,9 @@ const LISTINGS = `
     }
 
 `;
-
+// this is the same as above, but for deleteListing
+// deletelisting mutation takes id as input which is ID!. then it passed as variable to the server.
+// what returns is the id of the deleted listing. which in return is passed to the client.
 const DELETE_LISTING = `
     mutation DeleteListing($id: ID!) {
         deleteListing(id: $id) {

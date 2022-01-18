@@ -16,6 +16,8 @@ export interface ListingsData{
     listings:Listing[];
 }
 
+
+
 export interface DeleteListingData{
     deleteListing:Listing;
 

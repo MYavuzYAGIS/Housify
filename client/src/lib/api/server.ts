@@ -5,6 +5,9 @@ interface Body<TVariables>{
 }
 
 
+// TVariables is a generic type that can be any type. especially added to enable post requests and pass id as a variable.
+//variable is optional because not all requests will have variables.(like query)
+
 // making a cross-origin request to the server on localhost.
 export const server ={
     fetch: async <TDATA =any,TVariables=any>(body:Body<TVariables>) => {
