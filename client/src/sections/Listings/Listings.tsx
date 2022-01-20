@@ -1,4 +1,4 @@
-import React, {useState } from 'react';
+import React, {useState, useEffect } from 'react';
 import {server} from '../../lib/api'
 import { DeleteListingData, DeleteListingVariables,ListingsData, Listing } from './types';
 
@@ -48,6 +48,12 @@ export const Listings = ({title,owner}:Props) => {
 
     const [listings, setListings] = useState<Listing[] | null>(null);
 
+    useEffect(() => {
+        fetchListings();}, []);
+
+
+
+
     const fetchListings = async() => {
         // reponse was volumous, {data} is the only thing we need so we desctructured the response and took only data part.
         const {data } =await server.fetch<ListingsData>({query: LISTINGS});
@@ -80,7 +86,6 @@ export const Listings = ({title,owner}:Props) => {
         {listingsList}
 {/* Curly braces { } are special syntax in JSX. It is used to evaluate a JavaScript expression during compilation.
  A JavaScript expression can be a variable, function, an object, or any code that resolves into a value. */}
-        <button onClick={fetchListings}>Query Listings</button>
     </div>
     )
 };
