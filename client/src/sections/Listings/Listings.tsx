@@ -56,27 +56,31 @@ export const Listings = ({title,owner}:Props) => {
     };
 
 
-    const deleteListings = async() => {
-        const {data} = await server.fetch<DeleteListingData,DeleteListingVariables>({
+    const deleteListings = async(id:string) => {
+        await server.fetch<DeleteListingData,DeleteListingVariables>({
             query: DELETE_LISTING,
-            variables:{id: '61e5751bb872def982770012'} });
-            console.log(data);
+            variables: {id
+            }
+         });
+            fetchListings(); // after deleting, we need to fetch the listings again.
+            
     };
            
 
  
-    const listingsList=listings?.map((listing:Listing) => { // ? is used to check if listings is not null.
-
-        return <li key={listing.id}>{listing.title}</li>
-
-    })
+    const listingsList=listings? (
+        <ul>
+            {listings.map(listing =>{ return <li key={listing.id}>{listing.title} <button onClick={()=> deleteListings(listing.id)}>Delete This Listing.</button></li>;
+            })}
+        </ul>) : (<p>Click to load...</p>);
         
     return( 
     <div>
         <h2>{title} Listings Owned by {owner}</h2>
-        <button onClick={fetchListings}>Console Log Listings from MongoDB</button>
-        <button onClick={deleteListings}>Mutate listings from MongoDB</button>
-
+        {listingsList}
+{/* Curly braces { } are special syntax in JSX. It is used to evaluate a JavaScript expression during compilation.
+ A JavaScript expression can be a variable, function, an object, or any code that resolves into a value. */}
+        <button onClick={fetchListings}>Query Listings</button>
     </div>
     )
 };
