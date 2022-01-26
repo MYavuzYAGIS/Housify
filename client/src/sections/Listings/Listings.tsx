@@ -1,6 +1,6 @@
-import React, {useState, useEffect } from 'react';
-import {server} from '../../lib/api'
-import { DeleteListingData, DeleteListingVariables,ListingsData, Listing } from './types';
+import React from 'react';
+import {server, useQuery} from '../../lib/api'
+import { DeleteListingData, DeleteListingVariables,ListingsData } from './types';
 
 
 
@@ -45,22 +45,9 @@ interface Props{
 // destructured the props and typeDefined them using the interface's name. then passed them to the component.
 export const Listings = ({title,owner}:Props) => {
 
+    const {data} = useQuery<ListingsData>(LISTINGS);
 
-    const [listings, setListings] = useState<Listing[] | null>(null);
-
-    useEffect(() => {
-        fetchListings();}, []);
-
-
-
-
-    const fetchListings = async() => {
-        // reponse was volumous, {data} is the only thing we need so we desctructured the response and took only data part.
-        const {data } =await server.fetch<ListingsData>({query: LISTINGS});
-        // defined type through interface, so data.listings is ok but data.asdasda is given error since there is no asdsad in the interface.
-         setListings(data.listings);
-    };
-
+    
 
     const deleteListings = async(id:string) => {
         await server.fetch<DeleteListingData,DeleteListingVariables>({
@@ -68,10 +55,10 @@ export const Listings = ({title,owner}:Props) => {
             variables: {id
             }
          });
-            fetchListings(); // after deleting, we need to fetch the listings again.
             
     };
            
+    const listings = data ? data.listings : null;
 
  
     const listingsList=listings? (
