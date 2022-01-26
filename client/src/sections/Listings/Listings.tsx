@@ -45,7 +45,7 @@ interface Props{
 // destructured the props and typeDefined them using the interface's name. then passed them to the component.
 export const Listings = ({title,owner}:Props) => {
 
-    const {data} = useQuery<ListingsData>(LISTINGS);
+    const {data,refetch} = useQuery<ListingsData>(LISTINGS);
 
     
 
@@ -55,6 +55,7 @@ export const Listings = ({title,owner}:Props) => {
             variables: {id
             }
          });
+         refetch();
             
     };
            
