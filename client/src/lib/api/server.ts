@@ -4,6 +4,9 @@ interface Body<TVariables>{
     variables?: TVariables; // optional since ? is added.
 }
 
+interface Error{
+    message:string // error message interface.
+}
 
 // TVariables is a generic type that can be any type. especially added to enable post requests and pass id as a variable.
 //variable is optional because not all requests will have variables.(like query)
@@ -18,6 +21,10 @@ export const server ={
             },
             body:JSON.stringify(body)
         });
-        return res.json() as Promise<{data:TDATA}>;
+        if (!res.ok){
+            throw new Error('Failed to fetch from the server.')
+
+        }
+        return res.json() as Promise<{data:TDATA, errors: Error[]}>; // GraphQL response is a json object which has data and errors. even when error returns, data is still returned so browser is confused sometimes. So we need to check for errors.
     }
 };

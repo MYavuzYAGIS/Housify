@@ -1,8 +1,10 @@
-import React from 'react';
-import {server, useQuery} from '../../lib/api'
-import { DeleteListingData, DeleteListingVariables,ListingsData } from './types';
-
-
+import React from "react";
+import { server, useQuery } from "../../lib/api";
+import {
+  DeleteListingData,
+  DeleteListingVariables,
+  ListingsData,
+} from "./types";
 
 // this makes actual graphql request to the server as query. So this const is going to be sent to server and server expects this format.
 // what is expected is a promise, and we made a listings const to store the awaited response.
@@ -35,46 +37,52 @@ const DELETE_LISTING = `
     }
 `;
 
-interface Props{
-    title: string;
-    owner: string;
+interface Props {
+  title: string;
+  owner: string;
 }
 
-
-
 // destructured the props and typeDefined them using the interface's name. then passed them to the component.
-export const Listings = ({title,owner}:Props) => {
+export const Listings = ({ title, owner }: Props) => {
+  const { data, loading, refetch,error } = useQuery<ListingsData>(LISTINGS);
 
-    const {data,refetch} = useQuery<ListingsData>(LISTINGS);
+  const deleteListings = async (id: string) => {
+    await server.fetch<DeleteListingData, DeleteListingVariables>({
+      query: DELETE_LISTING,
+      variables: { id },
+    });
+    refetch();
+  };
 
-    
+  const listings = data ? data.listings : null;
 
-    const deleteListings = async(id:string) => {
-        await server.fetch<DeleteListingData,DeleteListingVariables>({
-            query: DELETE_LISTING,
-            variables: {id
-            }
-         });
-         refetch();
-            
-    };
-           
-    const listings = data ? data.listings : null;
+  const listingsList = listings ? (
+    <ul>
+      {listings.map((listing) => {
+        return (
+          <li key={listing.id}>
+            {listing.title}{" "}
+            <button onClick={() => deleteListings(listing.id)}> 
+              Delete This Listing.
+            </button>
+          </li>
+        );
+      })}
+    </ul>
+  ) : null;
 
- 
-    const listingsList=listings? (
-        <ul>
-            {listings.map(listing =>{ return <li key={listing.id}>{listing.title} <button onClick={()=> deleteListings(listing.id)}>Delete This Listing.</button></li>;
-            })}
-        </ul>) : (<p>Click to load...</p>);
-        
-    return( 
+
+  if (loading) {return <h2>Loading...</h2>;}
+  if (error) return <h2>beep boop. something went wrong.</h2>;
+  
+  return (
     <div>
-        <h2>{title} Listings Owned by {owner}</h2>
-        {listingsList}
-{/* Curly braces { } are special syntax in JSX. It is used to evaluate a JavaScript expression during compilation.
+      <h2>
+        {title} Listings Owned by {owner}
+      </h2>
+      {listingsList}
+      {/* Curly braces { } are special syntax in JSX. It is used to evaluate a JavaScript expression during compilation.
  A JavaScript expression can be a variable, function, an object, or any code that resolves into a value. */}
     </div>
-    )
+  );
 };
-
