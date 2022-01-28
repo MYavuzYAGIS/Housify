@@ -1,10 +1,11 @@
 import React from "react";
-import { server, useQuery } from "../../lib/api";
+import {useQuery, useMutation } from "../../lib/api";
 import {
   DeleteListingData,
   DeleteListingVariables,
   ListingsData,
 } from "./types";
+
 
 // this makes actual graphql request to the server as query. So this const is going to be sent to server and server expects this format.
 // what is expected is a promise, and we made a listings const to store the awaited response.
@@ -46,11 +47,11 @@ interface Props {
 export const Listings = ({ title, owner }: Props) => {
   const { data, loading, refetch,error } = useQuery<ListingsData>(LISTINGS);
 
-  const deleteListings = async (id: string) => {
-    await server.fetch<DeleteListingData, DeleteListingVariables>({
-      query: DELETE_LISTING,
-      variables: { id },
-    });
+  const[deleteListing,{loading:deleteListingLoading,error:deleteListingError}]= useMutation<DeleteListingData,DeleteListingVariables>(DELETE_LISTING)
+
+
+  const hadnleDeleteListings = async (id: string) => {
+    await deleteListing({id});
     refetch();
   };
 
@@ -62,7 +63,7 @@ export const Listings = ({ title, owner }: Props) => {
         return (
           <li key={listing.id}>
             {listing.title}{" "}
-            <button onClick={() => deleteListings(listing.id)}> 
+            <button onClick={() => hadnleDeleteListings(listing.id)}> 
               Delete This Listing.
             </button>
           </li>
@@ -70,6 +71,10 @@ export const Listings = ({ title, owner }: Props) => {
       })}
     </ul>
   ) : null;
+
+  const deleteListingLoadingMessage = deleteListingLoading ? <h2>Deletion in Progress</h2> : null
+  const deleteListingErrorMessage = deleteListingError ? <h2>Error Occured!</h2> : null
+
 
 
   if (loading) {return <h2>Loading...</h2>;}
@@ -81,6 +86,8 @@ export const Listings = ({ title, owner }: Props) => {
         {title} Listings Owned by {owner}
       </h2>
       {listingsList}
+      {deleteListingLoadingMessage}
+      {deleteListingErrorMessage}
       {/* Curly braces { } are special syntax in JSX. It is used to evaluate a JavaScript expression during compilation.
  A JavaScript expression can be a variable, function, an object, or any code that resolves into a value. */}
     </div>

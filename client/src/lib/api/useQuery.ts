@@ -7,7 +7,14 @@ interface State<TData> {
   error: boolean | null; // in order to track the error state
 }
 
-export const useQuery = <TData = any>(query: string) => {
+
+
+interface QueryResult<TData> extends State<TData> {
+  refetch: () => void;
+
+}
+
+export const useQuery = <TData = any>(query: string) : QueryResult<TData> => {
   const [state, setState] = useState<State<TData>>({ data: null , loading: false, error:false});
 
   const fetch = useCallback(() => {
