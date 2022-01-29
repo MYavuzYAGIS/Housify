@@ -1,5 +1,5 @@
 import React from "react";
-import {useQuery, useMutation } from "../../lib/api";
+import {useQuery,useMutation,gql}from"@apollo/client";
 import {
   DeleteListingData,
   DeleteListingVariables,
@@ -11,7 +11,7 @@ import {
 // what is expected is a promise, and we made a listings const to store the awaited response.
 // then console.logged the response.
 //EZ
-const LISTINGS = `
+const LISTINGS = gql`
     query Listings { 
         listings { 
             id
@@ -30,7 +30,7 @@ const LISTINGS = `
 // this is the same as above, but for deleteListing
 // deletelisting mutation takes id as input which is ID!. then it passed as variable to the server.
 // what returns is the id of the deleted listing. which in return is passed to the client.
-const DELETE_LISTING = `
+const DELETE_LISTING = gql`
     mutation DeleteListing($id: ID!) {
         deleteListing(id: $id) {
             id
@@ -51,7 +51,7 @@ export const Listings = ({ title, owner }: Props) => {
 
 
   const hadnleDeleteListings = async (id: string) => {
-    await deleteListing({id});
+    await deleteListing({variables:{id}});
     refetch();
   };
 
