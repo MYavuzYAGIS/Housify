@@ -1,4 +1,4 @@
-# IMPORTANT NOTE WRT src/lib/api/
+# IMPORTANT NOTE WRT src/lib/
 
 Normally I created these custom hooks and query/mutate functions in order to interact with the GraphQL server.
 However, with the introduction of `Apollo Client` to the frotnend, I can now use the `useQuery` and `useMutation` that is provided by the `@apollo/client` library.
