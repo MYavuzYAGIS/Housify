@@ -1,10 +1,6 @@
-import React from "react";
 import {useQuery,useMutation,gql}from"@apollo/client";
-import {
-  DeleteListingData,
-  DeleteListingVariables,
-  ListingsData,
-} from "./types";
+import {Listings as ListingsData} from './__generated__/Listings';
+import {DeleteListing as DeleteListingData, DeleteListingVariables} from './__generated__/DeleteListing';
 
 
 // this makes actual graphql request to the server as query. So this const is going to be sent to server and server expects this format.
