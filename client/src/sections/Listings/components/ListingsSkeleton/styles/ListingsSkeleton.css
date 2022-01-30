@@ -1,0 +1,16 @@
+.listings-skeleton .listings-skeleton__alert {
+    margin-bottom:20px;
+    text-align:center;
+    background-color: red;
+    color: white;
+    font-size: 1rem;
+}
+
+.listings-skeleton .ant-divider-horizonal{
+    margin:12px 0;
+}
+
+.listings-skeleton .ant-skeleton-content .ant-skeleton-title + .ant-skeleton-paragraph{
+    margin-top:12px;
+}
+

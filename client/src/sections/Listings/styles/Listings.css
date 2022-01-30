@@ -1,4 +1,8 @@
  .listings {
-     margin:2vh;
+     margin:3vh;
      max-width: 40vw;
+ }
+
+ .listings .listings__alert{
+     margin-bottom:20px;
  }
