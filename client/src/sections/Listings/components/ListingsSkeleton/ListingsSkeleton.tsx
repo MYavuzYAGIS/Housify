@@ -22,3 +22,4 @@ export const ListingsSkeleton = ({ title ,error=false}: Props) => {
     </div>
     )
 };
+
