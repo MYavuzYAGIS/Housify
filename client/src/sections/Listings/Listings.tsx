@@ -1,7 +1,8 @@
 import {useQuery,useMutation,gql}from"@apollo/client";
 import {Listings as ListingsData} from './__generated__/Listings';
 import {DeleteListing as DeleteListingData, DeleteListingVariables} from './__generated__/DeleteListing';
-import List from 'antd/es/list';
+import {Avatar, List, Button, Spin} from 'antd';
+import './styles/Listings.css';
 
 // this makes actual graphql request to the server as query. So this const is going to be sent to server and server expects this format.
 // what is expected is a promise, and we made a listings const to store the awaited response.
@@ -55,8 +56,8 @@ export const Listings = ({ title, owner }: Props) => {
 
   const listingsList = listings?(
     <List itemLayout="horizontal" dataSource={listings} renderItem={(listing) => (
-      <List.Item>
-        <List.Item.Meta title={listing.title} />
+      <List.Item actions={[<Button type="primary" onClick={()=>hadnleDeleteListings(listing.id)}>Delete</Button>]}  >
+        <List.Item.Meta title={listing.title} description={listing.address} avatar={<Avatar src={listing.image} shape="square" size={48}  />}  />
         {/* <h4>Address</h4>
         <List.Item.Meta description={listing.address} /> */}
       </List.Item>
@@ -80,7 +81,6 @@ export const Listings = ({ title, owner }: Props) => {
   //   </ul>
   // ) : null;
 
-  const deleteListingLoadingMessage = deleteListingLoading ? <h2>Deletion in Progress</h2> : null
   const deleteListingErrorMessage = deleteListingError ? <h2>Error Occured!</h2> : null
 
 
@@ -89,15 +89,16 @@ export const Listings = ({ title, owner }: Props) => {
   if (error) return <h2>beep boop. something went wrong.</h2>;
   
   return (
-    <div>
+    <div className="listings" >
+      <Spin spinning={deleteListingLoading} > 
       <h2>
         {title} Listings Owned by {owner}
       </h2>
       {listingsList}
-      {deleteListingLoadingMessage}
       {deleteListingErrorMessage}
       {/* Curly braces { } are special syntax in JSX. It is used to evaluate a JavaScript expression during compilation.
  A JavaScript expression can be a variable, function, an object, or any code that resolves into a value. */}
+      </Spin>
     </div>
   );
 };

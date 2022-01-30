@@ -4,6 +4,7 @@ import {render} from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import {Listings} from './sections';
 import {ApolloProvider} from '@apollo/client'
+import './styles/index.css';
 
 const ApolloBoost = require("apollo-boost")
 const ApolloClient = ApolloBoost.default;
