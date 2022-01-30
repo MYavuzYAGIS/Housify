@@ -1,7 +1,7 @@
 import {useQuery,useMutation,gql}from"@apollo/client";
 import {Listings as ListingsData} from './__generated__/Listings';
 import {DeleteListing as DeleteListingData, DeleteListingVariables} from './__generated__/DeleteListing';
-
+import List from 'antd/es/list';
 
 // this makes actual graphql request to the server as query. So this const is going to be sent to server and server expects this format.
 // what is expected is a promise, and we made a listings const to store the awaited response.
@@ -53,20 +53,32 @@ export const Listings = ({ title, owner }: Props) => {
 
   const listings = data ? data.listings : null;
 
-  const listingsList = listings ? (
-    <ul>
-      {listings.map((listing) => {
-        return (
-          <li key={listing.id}>
-            {listing.title}{" "}
-            <button onClick={() => hadnleDeleteListings(listing.id)}> 
-              Delete This Listing.
-            </button>
-          </li>
-        );
-      })}
-    </ul>
-  ) : null;
+  const listingsList = listings?(
+    <List itemLayout="horizontal" dataSource={listings} renderItem={(listing) => (
+      <List.Item>
+        <List.Item.Meta title={listing.title} />
+        {/* <h4>Address</h4>
+        <List.Item.Meta description={listing.address} /> */}
+      </List.Item>
+    )
+    }/>):null;
+
+
+
+  // const listingsList = listings ? (
+  //   <ul>
+  //     {listings.map((listing) => {
+  //       return (
+  //         <li key={listing.id}>
+  //           {listing.title}{" "}
+  //           <button onClick={() => hadnleDeleteListings(listing.id)}> 
+  //             Delete This Listing.
+  //           </button>
+  //         </li>
+  //       );
+  //     })}
+  //   </ul>
+  // ) : null;
 
   const deleteListingLoadingMessage = deleteListingLoading ? <h2>Deletion in Progress</h2> : null
   const deleteListingErrorMessage = deleteListingError ? <h2>Error Occured!</h2> : null
