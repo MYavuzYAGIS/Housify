@@ -1,5 +1,5 @@
 {
-  "name": "housify_client",
+  "name": "housify-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
