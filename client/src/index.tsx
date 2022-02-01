@@ -1,7 +1,7 @@
 import React from 'react';
 // import ApolloClient from 'apollo-boost';
 import {render} from 'react-dom';
-import { BrowserRouter as Router, Switch,Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes,Route } from 'react-router-dom';
 import {Home,Host,Listing,User,NotFound,Listings} from './sections';
 import {ApolloProvider} from '@apollo/client'
 import './styles/index.css';
@@ -14,9 +14,26 @@ const client = new ApolloClient({
 });
 
 
+const App = () => {
+  return(
+    <Router>
+      <Routes>
+        <Route   path="/" element={<Home/>} />
+        <Route   path="/host" element={<Host/>} />
+        <Route   path="/listing/:id" element={<Listing/>} />
+        <Route   path="/listings/:location?" element={<Listings title={'Housify'} owner={'Yavuz'}/>} />
+        <Route   path="/user/:id" element={<User/>} />
+        <Route  element={NotFound} />
+      </Routes>
+    </Router>
+  )
+
+}
+
+
 render(
   <ApolloProvider client ={client} >
-     <Listings title="Housify"  owner="Yavuz"/>
+    <App />
   </ApolloProvider>
   ,document.getElementById('root')
 
