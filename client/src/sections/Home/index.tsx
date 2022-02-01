@@ -1,5 +1,5 @@
 import React from 'react';
 
 export const Home = () => {
-    return <h1>Oppa Nothing Here Yet</h1>
+    return <h1>Homey</h1>
 };
