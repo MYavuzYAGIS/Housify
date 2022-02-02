@@ -1,6 +1,7 @@
 import { ObjectId } from 'mongodb';
 import { IResolvers } from "@graphql-tools/utils";
 import { Database, Listing } from '../../../lib/types';
+import { type } from 'os';
 
 
 // Resolvers for Listings.
@@ -38,8 +39,17 @@ export const listingResolvers:IResolvers= {
         address:(listing:Listing)=> listing.address,
         price:(listing:Listing)=> listing.price,
         numOfGuests:(listing:Listing)=> listing.numOfGuests,
-        numOfBeds:(listing:Listing)=> listing.numOfBeds,
-        numOfBaths:(listing:Listing)=> listing.numOfBaths,
-        rating:(listing:Listing)=> listing.rating
+        description:(listing:Listing)=> listing.description,
+        type:(listing:Listing)=> listing.type,
+        country:(listing:Listing)=> listing.country,
+        city:(listing:Listing)=> listing.city,
+        admin:(listing:Listing)=> listing.admin,
+        // bookings:(listing:Listing, _args:Record<string, never>, {db}:{db:Database})=>
+        // db.bookings.find({listing:listing._id}).toArray(),
+        // bookingsIndex:(listing:Listing)=> listing.bookingsIndex,
+        // host:(listing:Listing, _args:Record<string, never>, {db}:{db:Database})=>
+        // db.users.findOne({_id: listing.host})
+        
+
     }
 } 
