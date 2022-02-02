@@ -1,1 +1,1 @@
-export * './Google';
+export * from  './Google';
