@@ -48,6 +48,7 @@ export const listingResolvers:IResolvers= {
         // bookingsIndex:(listing:Listing)=> listing.bookingsIndex,
         // host:(listing:Listing, _args:Record<string, never>, {db}:{db:Database})=>
         // db.users.findOne({_id: listing.host})
+
         
 
     }
