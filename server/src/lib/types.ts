@@ -12,6 +12,17 @@ export interface Listing {
     numOfBaths: number;
     rating: number;   
 }
+
+export interface User {
+    _id: ObjectId;
+    // username: string;
+    // password: string;
+    // email: string;
+
+}
+
+
 export interface Database{
     listings: Collection<Listing>;
+    users: Collection<User>;
 }
