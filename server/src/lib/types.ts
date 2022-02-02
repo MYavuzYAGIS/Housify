@@ -3,8 +3,8 @@ import { Collection, ObjectId } from "mongodb";
 
 
 export enum ListingType {
-    Apartment = "apartment",
-    House = "house",
+    Apartment = "APARTMENT",
+    House = "HOUSE",
 }
 
 export interface BookingsIndexYear{
@@ -39,7 +39,7 @@ export interface Booking{
     tenant: string; // user id. one to one relationship with user _id. type is string because user _id is string
     checkIn: string;
     checkOut: string;
-    
+
 }
 
 
