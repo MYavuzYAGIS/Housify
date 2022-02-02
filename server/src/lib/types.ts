@@ -14,6 +14,9 @@ export interface BookingsIndexMonth{
     [key: string]: boolean;
 }
 
+export interface BookingsIndex{
+    [key: string]: BookingsIndexYear;
+}
 
 export interface Listing {
     _id: ObjectId; // prefixed for mongodb unique id.
@@ -27,7 +30,7 @@ export interface Listing {
     admin: string; // state or province
     city: string;
     bookings: ObjectId[]; // array of booking ids. one to many relationship with booking _id.
-    bookingsIndex: BookingsIndexYear; // index of bookings for time search.
+    bookingsIndex: BookingsIndex; // index of bookings for time search.
     price: number;
     numOfGuests: number;
 
