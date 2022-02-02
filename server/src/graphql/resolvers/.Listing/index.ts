@@ -2,6 +2,11 @@ import { ObjectId } from 'mongodb';
 import { IResolvers } from "@graphql-tools/utils";
 import { Database, Listing } from '../../../lib/types';
 
+// DISCLAIMER: I WONT BE NEEDING THIS FOLDER ANYMORE 
+// HENCE I AM ADDING THIS AS HIDDEN FOLDER AND REDEFINE RESOLVERS
+// I WILL KEEP THIS AS FUTURE REFERENCE ONLY.
+
+
 
 // Resolvers for Listings.
 export const listingResolvers:IResolvers= {
