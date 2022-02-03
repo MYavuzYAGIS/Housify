@@ -4,7 +4,7 @@ updates:
   directory: "/server"
   schedule:
     interval: daily
-    time: "04:00"
+    time: "14:30"
   open-pull-requests-limit: 25
   # ignore:
   # - dependency-name: "@typescript-eslint/parser"
@@ -20,8 +20,8 @@ updates:
 - package-ecosystem: npm
   directory: "/client"
   schedule:
-    interval: weekly
-    time: "04:00"
+    interval: daily
+    time: "14:30"
   open-pull-requests-limit: 25
   # ignore:
   # - dependency-name: antd
