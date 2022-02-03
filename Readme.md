@@ -3,8 +3,10 @@
 
 ![Node.js CI](https://github.com/MYavuzYAGIS/Housify/blob/master/.github/workflows/badge.svg)
 ![Version](https://github.com/MYavuzYAGIS/Housify/blob/master/.github/workflows/version.svg)
+![Maintained](https://github.com/MYavuzYAGIS/Housify/blob/master/.github/workflows/maintain.svg)
 
-Fullstack React home sharing application, https://www.newline.co/tinyhouse
+
+
 
 ## Getting started
 
