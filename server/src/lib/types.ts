@@ -1,7 +1,7 @@
 import { Collection, ObjectId } from "mongodb";
 
 
-export interface Viewer {
+export interface Viewer { 
     _id?: string;
     token?: string;
     avatar?: string;
