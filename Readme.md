@@ -1,32 +1,3 @@
-## Technologies used:
-
-### Client:
-- React
-- React Router DOM
-- GraphQL with Apollo Client
-- Ant Design
-- Typescript
-
-### Server:
-- Node js
-- Express
-- GraphQL with Apollo Server
-- Mongodb
-- OAuth 2.0 with google
-- Google People's API
-- Google Geocoding API
-- Cloudinary
-- Stripe
-
-
-
-
-
-# tinyhouse
-
-![Node.js CI](https://github.com/marcusholmgren/tinyhouse/workflows/Node.js%20CI/badge.svg)
-
-Fullstack React home sharing application, https://www.newline.co/tinyhouse
 
 ## Getting started
 
@@ -101,3 +72,33 @@ Reads the local schema file and generate types where GraphQL queries are defined
 ```cli
 yarn codegen:generate
 ```
+
+
+## Technologies used:
+### Client:
+- React
+- React Router DOM
+- GraphQL with Apollo Client
+- Ant Design
+- Typescript
+
+### Server:
+- Node js
+- Express
+- GraphQL with Apollo Server
+- Mongodb
+- OAuth 2.0 with google
+- Google People's API
+- Google Geocoding API
+- Cloudinary
+- Stripe
+
+
+
+
+
+# tinyhouse
+
+![Node.js CI](https://github.com/marcusholmgren/tinyhouse/workflows/Node.js%20CI/badge.svg)
+
+Fullstack React home sharing application, https://www.newline.co/tinyhouse
