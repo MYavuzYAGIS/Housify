@@ -10,7 +10,7 @@ async function logInViaGoogle(
     token: string,
     db: Database,
 
-): Promise<User | undefined> {
+): Promise<User | null> {
     const { user } = await Google.logIn(code);
 
     if (!user) {
@@ -78,7 +78,7 @@ async function logInViaGoogle(
             listings: [],
         });
 
-        viewer = await db.users.findOne({ _id: inserRes.insertedId });
+        viewer= await db.users.findOne({ _id: inserRes.insertedId });
     }
 
     return viewer;
@@ -106,7 +106,9 @@ function getViewerId(viewer: Viewer): string | undefined {
 }
 
 function logOutMutation(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _root: undefined,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _args: unknown,
 ): Viewer {
     try {

@@ -1,3 +1,5 @@
-export interface LogInArgs{
-    input: {code:string} | null
-}
+export interface LogInArgs {
+    input: {
+      code: string;
+    } | null;
+  }
