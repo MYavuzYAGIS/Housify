@@ -515,6 +515,15 @@
 }
 .log-in-card__google-button-logo {
   height: 43px;
+
+}
+.log-in-card__housify-logo {
+  height: 120px;
+  width: 200px;
+  margin:auto;
+  padding:10px;
+  border:1px solid goldenrod;
+  border-radius: 7px;
 }
 .log-in-card__google-button-text {
   text-align: left;
