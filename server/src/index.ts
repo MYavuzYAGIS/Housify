@@ -21,9 +21,9 @@ server.start().then(()=>{
   app.listen(process.env.PORT,()=>{console.log(`Server is running on http://localhost:${process.env.PORT}`);
   });
 });
- // sanity Chechk 
-  // const listings = await db.listings.find({}).toArray();
-  // console.log(listings);
+//  sanity Chechk 
+  const listings = await db.listings.find({}).toArray();
+  console.log(listings);
 };
 
 
