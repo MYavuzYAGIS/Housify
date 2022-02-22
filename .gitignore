@@ -8,3 +8,7 @@ npm-debug.log
 yarn-error.log
 yarn-debug.log
 Logo/
+server/package-lock.json
+client/package-lock.json
+server/yarn.lock
+client/yarn.lock
