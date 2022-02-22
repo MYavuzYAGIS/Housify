@@ -1,10 +1,12 @@
-import React from "react";
+import React, {useEffect, useRef} from "react";
 import {Card, Layout, Typography} from 'antd';
 import googleLogo from './assets/google_logo.png';
 import Housify from './assets/housify.png';
 import {Viewer} from '../../lib/types';
-import {useApolloClient} from '@apollo/react-hooks';
+import {useApolloClient, useMutation} from '@apollo/react-hooks';
+import {LOG_IN} from "../../lib/graphql/mutations";
 import {AUTH_URL} from "../../lib/graphql/queries/AuthUrl";
+import {LogIn as LogInData, LogInVariables} from "../../lib/graphql/mutations/LogIn/__generated__/LogIn";
 import {AuthUrl as AuthUrlData} from "../../lib/graphql/queries/AuthUrl/__generated__/AuthUrl";
 interface Props{
   setViewer:(viewer:Viewer)=>void;
@@ -16,6 +18,26 @@ const {Title,Text} = Typography;
 
 export const Login = ({setViewer}:Props) => {
   const client = useApolloClient();
+  const [logIn, {data:logInData, loading:logInLoading, error:logInError}] = useMutation<LogInData, LogInVariables>(LOG_IN,{
+    onCompleted: (data) => {
+      if(data && data.logIn){
+        setViewer(data.logIn);
+        if(typeof window !== 'undefined'){
+          localStorage.setItem('viewer',JSON.stringify(data.logIn));
+        }
+      }
+    }
+  });
+
+  const logInRef = useRef(logIn);
+
+  useEffect(()=>{
+    const code = new URL(window.location.href).searchParams.get('code');
+    if (code){
+      logInRef.current({variables:{input:{code}}})
+      
+    }
+  },[])
   const handleAuthorize = async () =>  {
     try {
       const {data} = await client.query<AuthUrlData>({
