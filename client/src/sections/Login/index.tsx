@@ -2,12 +2,18 @@ import React from "react";
 import {Card, Layout, Typography} from 'antd';
 import googleLogo from './assets/google_logo.png';
 import Housify from './assets/housify.png';
+import {Viewer} from '../../lib/types';
+import {useApolloClient} from '@apollo/react-hooks';
+interface Props{
+  setViewer:(viewer:Viewer)=>void
+
+}
 
 const {Content} = Layout;
 const {Title,Text} = Typography;
 
 
-export const Login = () => {
+export const Login = ({setViewer}:Props) => {
   return (
     <Content className="log-in">
       <Card className="log-in-card">
