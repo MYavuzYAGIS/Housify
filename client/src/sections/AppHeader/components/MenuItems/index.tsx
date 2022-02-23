@@ -26,7 +26,7 @@ export const MenuItems = ({ viewer,setViewer }: Props) => {
             }
         },
         onError:data=>{
-            displayErrorMessage("Sorry, we couldn't log you out");
+            displayErrorMessage("Sorry, we couldn't log you out"); 
         }
     });
     const handleLogOut = () => {
