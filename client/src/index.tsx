@@ -2,10 +2,10 @@ import React, {useState} from 'react';
 // import ApolloClient from 'apollo-boost';
 import {render} from 'react-dom';
 import { BrowserRouter as Router, Routes,Route } from 'react-router-dom';
-import {Home,Host,Listing,User,Login,NotFound,Listings} from './sections';
+import {Home,Host,Listing,User,Login,NotFound,Listings,AppHeader} from './sections';
 import {ApolloProvider} from '@apollo/client'
 import './styles/index.css';
-import {Layout} from 'antd';
+import {Affix,Layout} from 'antd';
 import {Viewer} from './lib/types'
 
 const ApolloBoost = require("apollo-boost")
@@ -31,6 +31,9 @@ const App = () => {
   return(
     <Router>
       <Layout id="app">
+        <Affix offsetTop={0} className="app__affix-header">
+          <AppHeader />
+        </Affix>
       <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/host" element={<Host/>} />
