@@ -54,7 +54,7 @@ const App = () => {
   });
   const logInRef = useRef(logIn);
   useEffect(() => {
-    logInRef.current();
+      logInRef.current();
   }, []);
 
   if (!viewer.didRequest && !error) {

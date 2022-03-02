@@ -105,7 +105,8 @@ async function logInViaCookie(
     const updateReq = await db.users.findOneAndUpdate(
         { _id: req.signedCookies.viewer },
         { $set: { token } },
-        { returnDocument: "after" }
+        { returnDocument: 'after' }
+       
     );
     const viewer = updateReq.value;
 
@@ -187,77 +188,3 @@ function authUrlQuery(): string {
         throw new Error(`Failed to query Google Auth Url: ${error}`);
     }
 }
-
-// function viewerHasWallet(viewer: Viewer): boolean | undefined {
-//   return viewer.walletId ? true : undefined;
-// }
-
-// function getViewerId(viewer: Viewer): string | undefined {
-//   return viewer._id;
-// }
-
-// function logOutMutation(
-//   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-//   _root: undefined,
-//   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-//   _args: unknown,
-//   { res }: { res: Response }
-// ): Viewer {
-//   try {
-//     res.clearCookie("viwer",cookieOptions); 
-//     return { didRequest: true };
-//   } catch (error) {
-//     throw new Error(`Failed to log out: ${error}`);
-//   }
-// }
-// const logInMutation= async (
-//   _root: undefined,
-//   { input }: LogInArgs,
-//   { db ,req,res}: { db: Database, req:Request, res:Response }
-// ): Promise<Viewer> => {
-//   try {
-//     const code = input ? input.code : null;
-//     const token = crypto.randomBytes(16).toString("hex");
-
-//     const viewer: User | null = code
-//       ? await logInViaGoogle(code, token, db,res)
-//       : await logInviaCookie(token,db,req,res);
-
-//     if (!viewer) {
-//       return { didRequest: true };
-//     }
-
-//     return {
-//       _id: viewer._id,
-//       token: viewer.token,
-//       avatar: viewer.avatar,
-//       walletId: viewer.walletId,
-//       didRequest: true,
-//     };
-//   } catch (error) {
-//     throw new Error(`Failed to log in: ${error}`);
-//   }
-// }
-
-// function authUrlQuery(): string {
-//   try {
-//     return Google.authUrl;
-//   } catch (error) {
-//     throw new Error(`Failed to query Google Auth Url: ${error}`);
-//   }
-// }
-
-// export const viewerResolvers: IResolvers = {
-//     Query: {
-//       authUrl: authUrlQuery,
-//     },
-//     Mutation: {
-//       logIn: logInMutation,
-//       logOut: logOutMutation,
-//     },
-//     Viewer: {
-//       id: getViewerId,
-//       hasWallet: viewerHasWallet,
-//     },
-//   };
-
