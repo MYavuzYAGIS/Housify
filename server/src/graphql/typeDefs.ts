@@ -1,5 +1,15 @@
 import { gql } from "apollo-server-express";
 export const typeDefs = gql`
+
+type Bookings {
+    total: Int!
+    result: [Booking!]!
+}
+type Listings{
+    total: Int!
+    result: [Listing!]!
+}
+
   type User {
     id: ID!
     name: String!
