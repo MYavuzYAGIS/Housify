@@ -7,8 +7,8 @@ export const typeDefs = gql`
     contact: String!
     hasWallet: Boolean!
     income: Int
-    bookings: Bookings
-    listings: Listings!
+    bookings(limit: Int!, page:Int!): Bookings
+    listings(limit: Int!, page:Int!): Listings!
   }
 
   type Viewer {
