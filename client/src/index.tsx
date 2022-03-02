@@ -5,10 +5,11 @@ import { BrowserRouter as Router, Routes,Route } from 'react-router-dom';
 import {Home,Host,Listing,User,Login,NotFound,Listings,AppHeader} from './sections';
 import {ApolloProvider, useMutation} from '@apollo/client'
 import './styles/index.css';
-import {Affix,Layout} from 'antd';
+import {Affix,Layout,Spin} from 'antd';
 import {Viewer} from './lib/types'
 import { LOG_IN } from './lib/graphql/mutations';
 import { LogIn as LogInData, LogInVariables } from './lib/graphql/mutations/LogIn/__generated__/LogIn';
+import {AppHeaderSkeleton,ErrorBanner} from './lib/components';
 
 const ApolloBoost = require("apollo-boost")
 const ApolloClient = ApolloBoost.default;
@@ -46,11 +47,17 @@ const App = () => {
   },[])
 
 
-
-
-  
-
-  console.log(viewer)
+  if(!viewer.didRequest  && !error){
+    return (
+     <Layout className="app-skeleton">
+       <AppHeaderSkeleton/>
+          <div className="app-skeleton__spin-section">
+            <Spin size="large" tip="Launching Housify" />
+          </div>
+     </Layout>
+    )
+  };
+  const logInErrorElement = error?<ErrorBanner description="Unable to log you in :/// Please try again later...." />:null;
   return(
     <Router>
       <Layout id="app">
