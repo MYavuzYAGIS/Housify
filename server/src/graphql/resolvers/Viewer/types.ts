@@ -1,5 +1,5 @@
 export interface LogInArgs {
-    input: {
+    login: {
       code: string;
     } | null;
   }

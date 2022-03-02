@@ -156,11 +156,11 @@ function logOutMutation(
 
 async function logInMutation(
     _root: undefined,
-    { input }: LogInArgs,
+    { login }: LogInArgs,
     { db, req, res }: { db: Database; req: Request; res: Response }
 ): Promise<Viewer> {
     try {
-        const code = input ? input.code : null;
+        const code = login ? login.code : null;
         const token = crypto.randomBytes(16).toString("hex");
 
         const viewer: User | null = code
