@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 // import ApolloClient from 'apollo-boost';
+
 import { render } from "react-dom";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {
@@ -27,7 +28,16 @@ const ApolloBoost = require("apollo-boost");
 const ApolloClient = ApolloBoost.default;
 
 const client = new ApolloClient({
-  uri: "/api", // <-- add the URL of the GraphQL server here
+  uri: "/api",
+  //@ts-ignore:next-line
+  request: async operation =>{
+    const token = sessionStorage.getItem("token");
+    operation.setContext({
+      headers:{
+        "X-CSRF-TOKEN": token || "",
+      }
+    })
+  } 
 });
 
 const initialViewer: Viewer = {
@@ -52,6 +62,7 @@ const App = () => {
       }
     },
   });
+
   const logInRef = useRef(logIn);
   useEffect(() => {
       logInRef.current();

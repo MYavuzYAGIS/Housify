@@ -12,6 +12,8 @@ const cookieOptions = {
     secure: process.env.NODE_ENV === "development" ? false : true,
 };
 
+
+
 async function logInViaGoogle(
     code: string,
     token: string,
