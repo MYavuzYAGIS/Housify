@@ -9,7 +9,6 @@ type Booking{
     checkOut:String!
 }
 
-
 type Bookings {
     total: Int!
     result: [Booking!]!
@@ -64,7 +63,7 @@ type Listing{
 
   type Query {
     authUrl: String!
-    user: String!
+    user(id:ID!): User!
   }
 
   type Mutation {
