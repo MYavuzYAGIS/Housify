@@ -57,18 +57,22 @@ export interface Booking{
     // income: number; // user's total income.
     // bookings: ObjectId[]; // array of booking id. one to many relationship. takes from booking collection.
     // listings: ObjectId[]; // array of listing id. one to many relationship. takes from listing collection.
-    export interface User {
-        _id: string;
-        token: string;
-        name: string;
-        avatar: string;
-        contact: string;
-        walletId?: string;
-        income: number;
-        bookings: ObjectId[];
-        listings: ObjectId[];
+export interface User {
+    _id: string;
+    token: string;
+    name: string;
+    avatar: string;
+    contact: string;
+    walletId?: string;
+    income: number;
+    bookings: ObjectId[];
+    listings: ObjectId[];
       
 }
+
+
+
+
 
 
 export interface Database{
