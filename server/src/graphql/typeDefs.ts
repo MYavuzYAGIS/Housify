@@ -18,7 +18,7 @@ type Listings{
     result: [Listing!]!
 }
 
-type ListingType{
+enum ListingType {
     APARTMENT
     HOUSE
 }
