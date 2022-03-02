@@ -6,7 +6,7 @@ export const typeDefs = gql`
     avatar: String!
     contact: String!
     hasWallet: Boolean!
-    income: Int!
+    income: Int
     bookings: Bookings
     listings: Listings!
   }
