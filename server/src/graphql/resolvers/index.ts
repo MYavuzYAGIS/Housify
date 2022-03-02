@@ -1,5 +1,6 @@
 import merge from 'lodash.merge'
 import { viewerResolvers } from './Viewer';
+import { userResolvers } from './User';
 // import {listingResolvers} from './Listing'
 
 // This will be the collection area of all the resolvers.
@@ -11,6 +12,6 @@ import { viewerResolvers } from './Viewer';
 // from here on all the resolvers will be merged together by being placed in the merge() function.
 
 
-export const resolvers = merge(viewerResolvers);
+export const resolvers = merge(viewerResolvers, userResolvers);
 
 
