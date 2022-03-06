@@ -1,5 +1,5 @@
 import { IResolvers } from "@graphql-tools/utils";
-import { UserArgs,UserBookingArgs,UserBookingsData } from "./types";
+import { UserArgs,UserBookingArgs,UserBookingsData, UserListingArgs,UserListingsData} from "./types";
 import { authorize } from "../../../lib/utils";
 import {Database,User} from "../../../lib/types";
 import {Request } from "express";
@@ -53,8 +53,33 @@ export const userResolvers:IResolvers={
                 }
 
 
+            },
+            listings:async (user:User,{limit,page}:UserListingArgs,{db}: {db:Database}) : Promise<UserListingsData | null> =>{
+                try{
+                    if (!user.authorized){
+
+                    }
+                    const data:UserListingsData = {
+                        total:0,
+                        result:[]
+
+                    }
+                    let cursor = await db.listings.find({
+                        _id :{$in:user.bookings}
+                    });
+                    cursor = cursor.skip(page > 0 ? (page - 1) * limit : 0);
+                    cursor = cursor.limit(limit);
+                    data.total = await cursor.count();
+                    data.result = await cursor.toArray();
+                    return data;
+
+                }
+                catch(error){
+                    throw new Error(`Failed to query user Listings: ${error}`);
+                }
+
+
             }
-            listings:
         }
     }
 
