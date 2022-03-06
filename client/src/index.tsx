@@ -93,7 +93,7 @@ const App = () => {
           <Route path="/host" element={<Host />} />
           <Route path="/listing/:id" element={<Listing />} />
           <Route path="/listings/:location" element={<Listings />} />
-          <Route path="/user/:id" element={<User />} />
+          <Route path="/user/:id" element={<User viewer={viewer}/>} />
           {/* <Route path="/login" element={(Props) => (<Login {...Props} setViewer={setViewer} />)} /> */}
           <Route path="/login" element={<Login setViewer={setViewer} />} />
           <Route path="*" element={<NotFound />} />
