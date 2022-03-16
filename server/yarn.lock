@@ -79,9 +79,9 @@
     tslib "~2.3.0"
     value-or-promise "1.0.11"
 
-"@graphql-tools/utils@^8.5.1", "@graphql-tools/utils@^8.6.0", "@graphql-tools/utils@^8.6.1":
-  version "8.6.1"
-  resolved "https://registry.npmjs.org/@graphql-tools/utils/-/utils-8.6.1.tgz"
+"@graphql-tools/utils@^8.5.1", "@graphql-tools/utils@^8.6.0", "@graphql-tools/utils@^8.6.3":
+  version "8.6.3"
+  resolved "https://registry.yarnpkg.com/@graphql-tools/utils/-/utils-8.6.3.tgz#ce9fc9adce4d45b229e314a2261290a88a252aed"
   dependencies:
     tslib "~2.3.0"
 
