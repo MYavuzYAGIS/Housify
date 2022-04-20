@@ -2,7 +2,7 @@
   "name": "housify-server",
   "version": "0.1.0",
   "dependencies": {
-    "@graphql-tools/utils": "^8.6.1",
+    "@graphql-tools/utils": "^8.6.9",
     "apollo-server-express": "^3.6.3",
     "body-parser": "^1.19.1",
     "cookie-parser": "^1.4.6",
