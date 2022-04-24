@@ -3,7 +3,7 @@ updates:
 - package-ecosystem: npm
   directory: "/server"
   schedule:
-    interval: daily
+    interval: monthly
     time: "14:30"
   open-pull-requests-limit: 25
   # ignore:
@@ -20,7 +20,7 @@ updates:
 - package-ecosystem: npm
   directory: "/client"
   schedule:
-    interval: daily
+    interval: monthly
     time: "14:30"
   open-pull-requests-limit: 25
   # ignore:
